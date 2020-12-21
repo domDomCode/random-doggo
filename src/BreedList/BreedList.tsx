@@ -52,9 +52,13 @@ const BreedList = () => {
           {breed}
         </Button>
       ))}
-      {selectedBreed &&
-      <DoggoDialog selectedBreed={selectedBreed} isOpen={isDialogOpen}
-                   setIsOpen={setIsDialogOpen}/>}
+      {selectedBreed
+      ? <DoggoDialog
+          selectedBreed={selectedBreed}
+          isOpen={isDialogOpen}
+          setIsOpen={setIsDialogOpen}
+        />
+      : null}
     </div>
   );
 };
