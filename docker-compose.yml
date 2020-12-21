@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  random_doggo:
+    container_name: random_doggo
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 3001:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
