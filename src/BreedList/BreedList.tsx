@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { Button } from '@material-ui/core';
+import { DoggoApiResponseInterface } from '../types/types';
 
-import './BreedList.scss';
 import DoggoDialog from '../DoggoDialog/DoggoDialog';
 
-export interface DoggoApiResponseInterface {
-  message: any;
-  status: string;
-}
+import './BreedList.scss';
 
 const BreedList = () => {
-  const baseUrlAPI = 'https://dog.ceo/api';
-
   const [ breedsList, setBreedsList ] = useState<string[]>([]);
 
   useEffect(() => {
-    axios.get<DoggoApiResponseInterface>(`${baseUrlAPI}/breeds/list/all`)
+    axios.get<DoggoApiResponseInterface>(`${process.env.REACT_APP_BASE_API_URL}/breeds/list/all`)
       .then((response: AxiosResponse<DoggoApiResponseInterface>) => {
         generateSubBreeds(response.data.message);
         setBreedsList(generateSubBreeds(response.data.message));
