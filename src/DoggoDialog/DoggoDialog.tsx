@@ -1,9 +1,9 @@
 import React from 'react';
 
-const DoggoModal = () => {
+const DoggoDialog = () => {
   return (
     <div>DoggoModal</div>
   )
 }
 
-export default DoggoModal;
+export default DoggoDialog;
