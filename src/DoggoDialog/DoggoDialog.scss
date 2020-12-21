@@ -1,0 +1,17 @@
+.DoggoDialog {
+  min-width: 300px;
+
+  &__doggo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > img {
+      width: 100%;
+    }
+  }
+
+  &__breed-name {
+    text-transform: capitalize;
+  }
+}

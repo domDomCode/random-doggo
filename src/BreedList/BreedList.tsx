@@ -3,9 +3,10 @@ import axios, { AxiosResponse } from 'axios';
 import { Button } from '@material-ui/core';
 
 import './BreedList.scss';
+import DoggoDialog from '../DoggoDialog/DoggoDialog';
 
-export interface BreedsListResponseInterface {
-  message: string[];
+export interface DoggoApiResponseInterface {
+  message: any;
   status: string;
 }
 
@@ -15,8 +16,8 @@ const BreedList = () => {
   const [ breedsList, setBreedsList ] = useState<string[]>([]);
 
   useEffect(() => {
-    axios.get<BreedsListResponseInterface>(`${baseUrlAPI}/breeds/list/all`)
-      .then((response: AxiosResponse<BreedsListResponseInterface>) => {
+    axios.get<DoggoApiResponseInterface>(`${baseUrlAPI}/breeds/list/all`)
+      .then((response: AxiosResponse<DoggoApiResponseInterface>) => {
         generateSubBreeds(response.data.message);
         setBreedsList(generateSubBreeds(response.data.message));
       });
@@ -37,8 +38,12 @@ const BreedList = () => {
     }, []);
   };
 
-  const handleClick = () => {
+  const [ isDialogOpen, setIsDialogOpen ] = useState(false);
+  const [ selectedBreed, setSelectedBreed ] = useState<string>('');
 
+  const handleBreedClick = (breed: string) => {
+    setSelectedBreed(breed);
+    setIsDialogOpen(true);
   };
 
   return (
@@ -47,11 +52,14 @@ const BreedList = () => {
         <Button
           classes={{ root: 'BreedList__btn' }}
           variant={'outlined'}
-          onClick={() => handleClick()}
+          onClick={() => handleBreedClick(breed)}
         >
           {breed}
         </Button>
       ))}
+      {selectedBreed &&
+      <DoggoDialog selectedBreed={selectedBreed} isOpen={isDialogOpen}
+                   setIsOpen={setIsDialogOpen}/>}
     </div>
   );
 };
