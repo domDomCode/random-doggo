@@ -11,5 +11,7 @@ In the project directory, you can run:
 ### `docker-compose up -d --build`
 App is containerized - it exposes port 3001 externally.
 
+### `yarn install`
 ### `yarn start`
+
 Traditional way to start a development server.
