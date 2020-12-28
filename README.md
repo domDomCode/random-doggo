@@ -8,8 +8,8 @@ Written in React + Typescript, with Material UI to make everything simpler.
 
 In the project directory, you can run:
 
-# docker-compose up -d --build
+### docker-compose up -d --build
 App is containerized - it exposes port 3001 externally.
 
-# yarn start
+### yarn start
 Traditional way to start a development server.
